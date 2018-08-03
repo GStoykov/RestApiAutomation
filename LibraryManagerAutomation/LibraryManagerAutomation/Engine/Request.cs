@@ -47,9 +47,7 @@ namespace LibraryManagerAutomation
                 _request.RequestFormat = DataFormat.Json;
 
             _request.AddBody(content);
-
             _request.Parameters.Find(x => x.Type == ParameterType.RequestBody).Name = type;
-
             _request.AddParameter(type, content, ParameterType.RequestBody);
 
             return _request;

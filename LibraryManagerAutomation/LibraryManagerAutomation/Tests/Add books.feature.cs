@@ -78,22 +78,20 @@ this.ScenarioSetup(scenarioInfo);
 #line hidden
             TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
                         "Id",
-                        "Author",
                         "Title",
-                        "Description"});
+                        "Description",
+                        "Author"});
             table1.AddRow(new string[] {
                         "1",
-                        "TestTitle",
-                        "TestDescription",
-                        "TestAuthor"});
+                        "TestTitle1",
+                        "TestDescription1",
+                        "TestAuthor1"});
 #line 9
  testRunner.And("Add request payload as JSON object:", ((string)(null)), table1, "And ");
 #line 12
  testRunner.And("Execute request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 13
- testRunner.Then("\'GET\' request to \'/books/1\' endpoint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 14
- testRunner.And("Execute request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Then("Response code is \'200\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
                         "Id",
@@ -102,11 +100,30 @@ this.ScenarioSetup(scenarioInfo);
                         "Author"});
             table2.AddRow(new string[] {
                         "1",
-                        "TestTitle",
-                        "TestDescription",
-                        "TestAuthor"});
-#line 15
+                        "TestTitle1",
+                        "TestDescription1",
+                        "TestAuthor1"});
+#line 14
  testRunner.And("Response is:", ((string)(null)), table2, "And ");
+#line 18
+ testRunner.Then("\'GET\' request to \'/books/1\' endpoint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 19
+ testRunner.And("Execute request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 20
+ testRunner.Then("Response code is \'200\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Id",
+                        "Title",
+                        "Description",
+                        "Author"});
+            table3.AddRow(new string[] {
+                        "1",
+                        "TestTitle1",
+                        "TestDescription1",
+                        "TestAuthor1"});
+#line 21
+ testRunner.And("Response is:", ((string)(null)), table3, "And ");
 #line hidden
             this.ScenarioCleanup();
         }

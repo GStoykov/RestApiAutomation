@@ -71,7 +71,8 @@
     <Compile Include="Engine\AssertHelper.cs" />
     <Compile Include="Engine\Environment.cs" />
     <Compile Include="Engine\Transforms.cs" />
-    <Compile Include="Steps\BookSteps.cs" />
+    <Compile Include="Steps\DataCleanUpSteps.cs" />
+    <Compile Include="Steps\DataGenerationSteps.cs" />
     <Compile Include="Steps\GeneralSteps.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Engine\Request.cs" />

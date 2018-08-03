@@ -3,6 +3,7 @@ using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using TechTalk.SpecFlow;
@@ -25,9 +26,13 @@ namespace LibraryManagerAutomation
         public void ExecuteRequest()
         {
             Request.ExecuteRequest();
-
         }
 
+        [StepDefinition(@"Response code is '(\d+)'")]
+        public void ResponseCodeId(int code)
+        {
+            Assert.AreEqual((HttpStatusCode)code, Request.GetResponseCode(), "Different response status code was returned:");
+        }
 
         [StepDefinition(@"Response is( collection of)?:")]
         public void ResponseIs(string isCollection, Table table)

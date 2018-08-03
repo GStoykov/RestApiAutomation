@@ -13,15 +13,22 @@ namespace LibraryManagerAutomation
         public static Request Request;
         //public static ICollection<Object> actualResponse;
 
-        [BeforeScenario]
-        public void Setup()
-        {
-            ScenarioContext.Current.Set<object>(null, "$null");
-        }
-
         public Environment()
         {
             Request = new Request();
+        }
+
+        [BeforeScenario]
+        public void BeforeScenario()
+        {
+            //ScenarioContext.Current.Set<object>(null, "$null");
+        }
+
+        [AfterScenario]
+        public void AfterScenario()
+        {
+            //ScenarioContext.Current.Set<object>(null, "$null");
+
         }
 
     }

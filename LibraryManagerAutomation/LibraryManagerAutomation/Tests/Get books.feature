@@ -13,15 +13,16 @@
 
 Scenario: Get all books
 	Given Following books in library:
-	| Id | Title      | Description      | Author      |
-	| 1  | TestTitle1 | TestDescription1 | TestAuthor1 |
-	| 2  | TestTitle2 | TestDescription2 | TestAuthor2 |
+         | Id | Title       | Description      | Author      |
+         | 1  | Test Title1 | TestDescription1 | TestAuthor1 |
+         | 2  | Test Title2 | TestDescription2 | TestAuthor2 |
 	When 'GET' request to '/books' endpoint
 	And Execute request
-	Then Response is collection of:
-	| Id | Title      | Description      | Author      |
-	| 1  | TestTitle1 | TestDescription1 | TestAuthor1 |
-	| 2  | TestTitle2 | TestDescription2 | TestAuthor2 |
+	Then Response code is '200'
+	And Response is collection of:
+		| Id | Title      | Description      | Author      |
+		| 1  | TestTitle1 | TestDescription1 | TestAuthor1 |
+		| 2  | TestTitle2 | TestDescription2 | TestAuthor2 |
 
 
 Scenario: Get all books when there are none
@@ -30,14 +31,14 @@ Scenario: Get all books when there are none
 	And Response is collection of:
 	||
 
-	
-Scenario: Get book by id
+
+Scenario: Get books by id
 	Given 'GET' request to '/books/1' endpoint
 	And Execute request
 	Then Response is:
 	| Id | Title     | Description     | Author     |
 	| 6  | TestTitle | TestDescription | TestAuthor |
-
+	
 
 Scenario: Get unexisting book by id
 	Given 'GET' request to '/books/9' endpoint
@@ -45,3 +46,19 @@ Scenario: Get unexisting book by id
 	Then Response is:
 	| Message                   |
 	| Book with id 9 not found! |
+
+
+Scenario Outline: Get book by filter
+	Given Following books in library:
+         | Id | Title       | Description      | Author      |
+         | 1  | Test Title1 | TestDescription1 | TestAuthor1 |
+         | 2  | Test Title2 | TestDescription2 | TestAuthor2 |
+	When 'GET' request to '/books?title=<filterText>' endpoint
+	And Execute request
+	Then Response is collection of:
+		 | Id | Title       | Description      | Author      |
+         | 1  | Test Title1 | TestDescription1 | TestAuthor1 |
+	Examples: 
+	| filterText |
+	| Title1     |
+	| Title3     |

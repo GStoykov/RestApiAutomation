@@ -8,7 +8,7 @@ using TechTalk.SpecFlow;
 namespace LibraryManagerAutomation
 {
     [Binding]
-    public class BookSteps : Environment
+    public class DataGenerationSteps : Environment
     {
         [StepDefinition(@"Following books in library:")]
         public void AddBooksInLibrary(Table table)
@@ -19,12 +19,10 @@ namespace LibraryManagerAutomation
             {
                 Table tableOfOneRow = new Table(table.Header.ToArray());
                 tableOfOneRow.AddRow(table.Rows[i]);
-
                 step.RequestToEndpoint("POST", "/books");
                 step.AddContentToBody("object", tableOfOneRow);
                 step.ExecuteRequest();
             }
-            
         }
     }
 }
