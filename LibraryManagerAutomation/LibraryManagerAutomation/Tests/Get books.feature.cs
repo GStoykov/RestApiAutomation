@@ -31,7 +31,8 @@ namespace LibraryManagerAutomation.Tests
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Get books", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Get books", "\tIn order to retrieve books in a library\r\n\tAs a API consumer\r\n\tI want to be able " +
+                    "request such information through endpoints", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -64,10 +65,12 @@ namespace LibraryManagerAutomation.Tests
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Get all books")]
-        public virtual void GetAllBooks()
+        [NUnit.Framework.DescriptionAttribute("Users can retrieve all books in the library")]
+        [NUnit.Framework.CategoryAttribute("bugAuthorNull")]
+        public virtual void UsersCanRetrieveAllBooksInTheLibrary()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get all books", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Users can retrieve all books in the library", new string[] {
+                        "bugAuthorNull"});
 #line 14
 this.ScenarioSetup(scenarioInfo);
 #line hidden
@@ -78,14 +81,14 @@ this.ScenarioSetup(scenarioInfo);
                         "Author"});
             table1.AddRow(new string[] {
                         "1",
-                        "Test Title1",
-                        "TestDescription1",
-                        "TestAuthor1"});
+                        "Aaa Bbb Ccc",
+                        "Test Description1",
+                        "Test Author1"});
             table1.AddRow(new string[] {
                         "2",
-                        "Test Title2",
-                        "TestDescription2",
-                        "TestAuthor2"});
+                        "Aaa Ddd Eee",
+                        "Test Description2",
+                        "Test Author2"});
 #line 15
  testRunner.Given("Following books in library:", ((string)(null)), table1, "Given ");
 #line 19
@@ -102,14 +105,14 @@ this.ScenarioSetup(scenarioInfo);
                         "Author"});
             table2.AddRow(new string[] {
                         "1",
-                        "TestTitle1",
-                        "TestDescription1",
-                        "TestAuthor1"});
+                        "Aaa Bbb Ccc",
+                        "Test Description1",
+                        "Test Author1"});
             table2.AddRow(new string[] {
                         "2",
-                        "TestTitle2",
-                        "TestDescription2",
-                        "TestAuthor2"});
+                        "Aaa Ddd Eee",
+                        "Test Description2",
+                        "Test Author2"});
 #line 22
  testRunner.And("Response is collection of:", ((string)(null)), table2, "And ");
 #line hidden
@@ -117,36 +120,56 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Get all books when there are none")]
-        public virtual void GetAllBooksWhenThereAreNone()
+        [NUnit.Framework.DescriptionAttribute("Users can retrieve books by \'title\' containing specific text")]
+        [NUnit.Framework.CategoryAttribute("bugAuthorNull")]
+        [NUnit.Framework.TestCaseAttribute("title", "Aaa", null)]
+        [NUnit.Framework.TestCaseAttribute("Title", "Aaa", null)]
+        [NUnit.Framework.TestCaseAttribute("title", "aaa", null)]
+        public virtual void UsersCanRetrieveBooksByTitleContainingSpecificText(string filter, string filterValue, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get all books when there are none", ((string[])(null)));
-#line 28
-this.ScenarioSetup(scenarioInfo);
-#line 29
- testRunner.Given("\'GET\' request to \'/books\' endpoint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+            string[] @__tags = new string[] {
+                    "bugAuthorNull"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Users can retrieve books by \'title\' containing specific text", @__tags);
 #line 30
- testRunner.And("Execute request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+this.ScenarioSetup(scenarioInfo);
 #line hidden
             TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
-                        ""});
+                        "Id",
+                        "Title",
+                        "Description",
+                        "Author"});
+            table3.AddRow(new string[] {
+                        "1",
+                        "Aaa Bbb Ccc",
+                        "Test Description1",
+                        "Test Author1"});
+            table3.AddRow(new string[] {
+                        "2",
+                        "KKK Ddd Eee",
+                        "Aaa Test Description2",
+                        "Test Author2"});
+            table3.AddRow(new string[] {
+                        "3",
+                        "NNN Ddd Eee",
+                        "Aaa Test Description2",
+                        "Aaa Test Author2"});
+            table3.AddRow(new string[] {
+                        "4",
+                        "Aaa Fff Ggg",
+                        "Test Description2",
+                        "Test Author3"});
 #line 31
- testRunner.And("Response is collection of:", ((string)(null)), table3, "And ");
-#line hidden
-            this.ScenarioCleanup();
-        }
-        
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Get books by id")]
-        public virtual void GetBooksById()
-        {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get books by id", ((string[])(null)));
-#line 35
-this.ScenarioSetup(scenarioInfo);
-#line 36
- testRunner.Given("\'GET\' request to \'/books/1\' endpoint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("Following books in library:", ((string)(null)), table3, "Given ");
 #line 37
+ testRunner.When(string.Format("\'GET\' request to \'/books?{0}={1}\' endpoint", filter, filterValue), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 38
  testRunner.And("Execute request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 39
+ testRunner.Then("Response code is \'200\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
                         "Id",
@@ -154,69 +177,78 @@ this.ScenarioSetup(scenarioInfo);
                         "Description",
                         "Author"});
             table4.AddRow(new string[] {
-                        "6",
-                        "TestTitle",
-                        "TestDescription",
-                        "TestAuthor"});
-#line 38
- testRunner.Then("Response is:", ((string)(null)), table4, "Then ");
+                        "1",
+                        "Aaa Bbb Ccc",
+                        "Test Description1",
+                        "Test Author1"});
+            table4.AddRow(new string[] {
+                        "4",
+                        "Aaa Fff Ggg",
+                        "Test Description2",
+                        "Test Author3"});
+#line 40
+ testRunner.Then("Response is collection of:", ((string)(null)), table4, "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Get unexisting book by id")]
-        public virtual void GetUnexistingBookById()
+        [NUnit.Framework.DescriptionAttribute("Retrieving books by non-existing title")]
+        public virtual void RetrievingBooksByNon_ExistingTitle()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get unexisting book by id", ((string[])(null)));
-#line 43
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Retrieving books by non-existing title", ((string[])(null)));
+#line 53
 this.ScenarioSetup(scenarioInfo);
-#line 44
- testRunner.Given("\'GET\' request to \'/books/9\' endpoint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 45
- testRunner.And("Execute request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[] {
-                        "Message"});
-            table5.AddRow(new string[] {
-                        "Book with id 9 not found!"});
-#line 46
- testRunner.Then("Response is:", ((string)(null)), table5, "Then ");
-#line hidden
-            this.ScenarioCleanup();
-        }
-        
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Get book by filter")]
-        [NUnit.Framework.TestCaseAttribute("Title1", null)]
-        [NUnit.Framework.TestCaseAttribute("Title3", null)]
-        public virtual void GetBookByFilter(string filterText, string[] exampleTags)
-        {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get book by filter", exampleTags);
-#line 51
-this.ScenarioSetup(scenarioInfo);
-#line hidden
-            TechTalk.SpecFlow.Table table6 = new TechTalk.SpecFlow.Table(new string[] {
                         "Id",
                         "Title",
                         "Description",
                         "Author"});
-            table6.AddRow(new string[] {
+            table5.AddRow(new string[] {
                         "1",
-                        "Test Title1",
-                        "TestDescription1",
-                        "TestAuthor1"});
-            table6.AddRow(new string[] {
+                        "Aaa Bbb Ccc",
+                        "Test Description1",
+                        "Test Author1"});
+            table5.AddRow(new string[] {
                         "2",
-                        "Test Title2",
-                        "TestDescription2",
-                        "TestAuthor2"});
-#line 52
- testRunner.Given("Following books in library:", ((string)(null)), table6, "Given ");
-#line 56
- testRunner.When(string.Format("\'GET\' request to \'/books?title={0}\' endpoint", filterText), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 57
+                        "KKK Ddd Eee",
+                        "Aaa Test Description2",
+                        "Test Author2"});
+            table5.AddRow(new string[] {
+                        "3",
+                        "NNN Ddd Eee",
+                        "Aaa Test Description2",
+                        "Aaa Test Author2"});
+            table5.AddRow(new string[] {
+                        "4",
+                        "Aaa Fff Ggg",
+                        "Test Description2",
+                        "Test Author3"});
+#line 54
+ testRunner.Given("Following books in library:", ((string)(null)), table5, "Given ");
+#line 60
+ testRunner.When("\'GET\' request to \'/books?title=Ppp\' endpoint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 61
  testRunner.And("Execute request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            TechTalk.SpecFlow.Table table6 = new TechTalk.SpecFlow.Table(new string[] {
+                        ""});
+#line 62
+ testRunner.Then("Response is collection of:", ((string)(null)), table6, "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Users cannot filter books by properties different than \"title\"")]
+        [NUnit.Framework.TestCaseAttribute("Description", "Aaa", null)]
+        [NUnit.Framework.TestCaseAttribute("Author", "Aaa", null)]
+        public virtual void UsersCannotFilterBooksByPropertiesDifferentThanTitle(string filter, string filterValue, string[] exampleTags)
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Users cannot filter books by properties different than \"title\"", exampleTags);
+#line 67
+this.ScenarioSetup(scenarioInfo);
 #line hidden
             TechTalk.SpecFlow.Table table7 = new TechTalk.SpecFlow.Table(new string[] {
                         "Id",
@@ -226,10 +258,92 @@ this.ScenarioSetup(scenarioInfo);
             table7.AddRow(new string[] {
                         "1",
                         "Test Title1",
-                        "TestDescription1",
-                        "TestAuthor1"});
-#line 58
- testRunner.Then("Response is collection of:", ((string)(null)), table7, "Then ");
+                        "Aaa Description1",
+                        "Bbb Author1"});
+            table7.AddRow(new string[] {
+                        "2",
+                        "Test Title2",
+                        "Bbb Description2",
+                        "Aaa Author2"});
+            table7.AddRow(new string[] {
+                        "3",
+                        "Aaa Title3",
+                        "Bbb Description3",
+                        "Ccc Author3"});
+#line 68
+ testRunner.Given("Following books in library:", ((string)(null)), table7, "Given ");
+#line 73
+ testRunner.When(string.Format("\'GET\' request to \'/books?{0}={1}\' endpoint", filter, filterValue), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 74
+ testRunner.And("Execute request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            TechTalk.SpecFlow.Table table8 = new TechTalk.SpecFlow.Table(new string[] {
+                        ""});
+#line 75
+ testRunner.Then("Response is collection of:", ((string)(null)), table8, "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Retrieving all books when there are none")]
+        public virtual void RetrievingAllBooksWhenThereAreNone()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Retrieving all books when there are none", ((string[])(null)));
+#line 86
+this.ScenarioSetup(scenarioInfo);
+#line 87
+ testRunner.Given("\'GET\' request to \'/books\' endpoint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 88
+ testRunner.And("Execute request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            TechTalk.SpecFlow.Table table9 = new TechTalk.SpecFlow.Table(new string[] {
+                        ""});
+#line 89
+ testRunner.And("Response is collection of:", ((string)(null)), table9, "And ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Get books by id")]
+        [NUnit.Framework.CategoryAttribute("assumedExpectedResult")]
+        public virtual void GetBooksById()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get books by id", new string[] {
+                        "assumedExpectedResult"});
+#line 94
+this.ScenarioSetup(scenarioInfo);
+#line hidden
+            TechTalk.SpecFlow.Table table10 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Id",
+                        "Title",
+                        "Description",
+                        "Author"});
+            table10.AddRow(new string[] {
+                        "1",
+                        "Aaa Bbb Ccc",
+                        "Test Description1",
+                        "Test Author1"});
+#line 95
+ testRunner.Given("Following books in library:", ((string)(null)), table10, "Given ");
+#line 98
+ testRunner.When("\'GET\' request to \'/books/1\' endpoint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 99
+ testRunner.And("Execute request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            TechTalk.SpecFlow.Table table11 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Id",
+                        "Title",
+                        "Description",
+                        "Author"});
+            table11.AddRow(new string[] {
+                        "1",
+                        "Aaa Bbb Ccc",
+                        "Test Description1",
+                        "Test Author1"});
+#line 100
+ testRunner.Then("Response is:", ((string)(null)), table11, "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
