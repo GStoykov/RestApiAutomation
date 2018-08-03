@@ -11,7 +11,7 @@ namespace LibraryManagerAutomation
     public class Environment
     {
         public static Request Request;
-        public static List<Dictionary<string, object>> actualResponse;
+        //public static ICollection<Object> actualResponse;
 
         [BeforeScenario]
         public void Setup()

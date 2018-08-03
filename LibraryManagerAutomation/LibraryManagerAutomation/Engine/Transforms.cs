@@ -34,6 +34,7 @@ namespace LibraryManagerAutomation
         public static Dictionary<string, object> ToDictionary(this Table table)
         {
             var dict = new Dictionary<string, object>();
+
             for (int r = 0; r < table.RowCount; r++)
             {
                 List<string> columns = table.Header.ToList();
@@ -41,11 +42,10 @@ namespace LibraryManagerAutomation
                 {
                     dict.Add(columns[c], table.Rows[r][c]);
                 }
+
             }
             return dict;
         }
-
-
 
     }
 }

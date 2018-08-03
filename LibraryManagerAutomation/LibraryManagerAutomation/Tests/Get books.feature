@@ -12,26 +12,29 @@
 
 
 Scenario: Get all books
-	Given 'GET' request to '/books' endpoint
-	#And There are books in the libraby
+	Given Following books in library:
+	| Id | Title      | Description      | Author      |
+	| 1  | TestTitle1 | TestDescription1 | TestAuthor1 |
+	| 2  | TestTitle2 | TestDescription2 | TestAuthor2 |
+	When 'GET' request to '/books' endpoint
 	And Execute request
-	And Response is:
-	| Id | Title     | Description     | Author     |
-	| 6  | TestTitle | TestDescription | TestAuthor |
-	#| 3  | TestTitle | TestDescription | TestAuthor |
+	Then Response is collection of:
+	| Id | Title      | Description      | Author      |
+	| 1  | TestTitle1 | TestDescription1 | TestAuthor1 |
+	| 2  | TestTitle2 | TestDescription2 | TestAuthor2 |
 
 
 Scenario: Get all books when there are none
 	Given 'GET' request to '/books' endpoint
 	And Execute request
-	And Response is:
+	And Response is collection of:
 	||
 
 	
 Scenario: Get book by id
-	Given 'GET' request to '/books/6' endpoint
+	Given 'GET' request to '/books/1' endpoint
 	And Execute request
-	And Response is:
+	Then Response is:
 	| Id | Title     | Description     | Author     |
 	| 6  | TestTitle | TestDescription | TestAuthor |
 
@@ -39,6 +42,6 @@ Scenario: Get book by id
 Scenario: Get unexisting book by id
 	Given 'GET' request to '/books/9' endpoint
 	And Execute request
-	And Response is:
+	Then Response is:
 	| Message                   |
 	| Book with id 9 not found! |

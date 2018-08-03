@@ -83,11 +83,11 @@ this.ScenarioSetup(scenarioInfo);
                         "Description"});
             table1.AddRow(new string[] {
                         "1",
-                        "Aaa Aaa Aaa",
-                        "Aaa Aaa Aaa",
-                        "Aaa Aaa Aaa"});
+                        "TestTitle",
+                        "TestDescription",
+                        "TestAuthor"});
 #line 9
- testRunner.And("Add request body:", ((string)(null)), table1, "And ");
+ testRunner.And("Add request payload as JSON object:", ((string)(null)), table1, "And ");
 #line 12
  testRunner.And("Execute request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 13
@@ -102,9 +102,9 @@ this.ScenarioSetup(scenarioInfo);
                         "Author"});
             table2.AddRow(new string[] {
                         "1",
-                        "Aaa Aaa Aaa",
-                        "Aaa Aaa Aaa",
-                        "Aaa Aaa Aaa"});
+                        "TestTitle",
+                        "TestDescription",
+                        "TestAuthor"});
 #line 15
  testRunner.And("Response is:", ((string)(null)), table2, "And ");
 #line hidden

@@ -12,7 +12,6 @@ namespace LibraryManagerAutomation
     [Binding]
     public class GeneralSteps : Environment
     {
-
         [StepDefinition(@"'(.*)' request to '(.*)' endpoint")]
         public void RequestToEndpoint(string requestMethod, string endpoint)
         {
@@ -21,33 +20,58 @@ namespace LibraryManagerAutomation
             Request.AddEndpoint(endpoint);
         }
 
+
         [StepDefinition(@"Execute request")]
         public void ExecuteRequest()
         {
             Request.ExecuteRequest();
+
         }
 
-        [StepDefinition(@"Response is( as collection)?:")]
+
+        [StepDefinition(@"Response is( collection of)?:")]
         public void ResponseIs(string isCollection, Table table)
         {
-            //actualResponse = JsonConvert.DeserializeObject<List<Dictionary<string, object>>>(Request.GetResponseMessage());
-
-            //if (String.IsNullOrEmpty(isCollection))
-            //    AssertHelper.DictionaryEqual(table.di, actualResponse);
-            //else
-            //    AssertHelper.ListDictionaryEqual(table.ToListDictionary(), actualResponse);
-
-
+            if (String.IsNullOrEmpty(isCollection))
+            {
+                try
+                {
+                    var actualResponse = JsonConvert.DeserializeObject<Dictionary<string, object>>(Request.GetResponseMessage());
+                    AssertHelper.DictionaryEqual(table.ToDictionary(), actualResponse);
+                }
+                catch (JsonSerializationException)
+                {
+                    throw new JsonSerializationException("Response was not returned as a JSON object");
+                }
+            }
+            else
+            {
+                try
+                {
+                    var actualResponse = JsonConvert.DeserializeObject<List<Dictionary<string, object>>>(Request.GetResponseMessage());
+                    AssertHelper.ListDictionaryEqual(table.ToListDictionary(), actualResponse);
+                }
+                catch (JsonSerializationException)
+                {
+                    throw new JsonSerializationException("Response was not returned as a collection of JSON objects");
+                }
+            }
         }
 
 
-        [StepDefinition(@"Add request body( as collection)?:")]
-        public void ThereAreBooksInTheLibrary(List<Dictionary<string, object>> objectsToAdd)
+        [StepDefinition(@"Add request payload as JSON (object|collection):")]
+        public void AddContentToBody(string payloadFormat, Table payload)
         {
-            Request.AddContent(objectsToAdd);
+            if (payloadFormat == "object")
+            {
+                Request.AddContent(payload.ToDictionary());
+            }
+            else
+            {
+                // To implement in future if needed
+            }
         }
 
-        
 
     }
 }

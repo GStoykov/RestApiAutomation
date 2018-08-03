@@ -56,7 +56,6 @@ namespace LibraryManagerAutomation
         }
 
 
-
         public IRestResponse ExecuteRequest()
         {
             _response = _client.Execute(_request);
@@ -72,9 +71,6 @@ namespace LibraryManagerAutomation
 
         public string GetResponseMessage()
         {
-            if (_response.Content[0] == '{')
-                return "[" + _response.Content + "]";
-
             return _response.Content;
         }
     }
