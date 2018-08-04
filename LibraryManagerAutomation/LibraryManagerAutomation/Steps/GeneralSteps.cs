@@ -13,6 +13,22 @@ namespace LibraryManagerAutomation
     [Binding]
     public class GeneralSteps : Environment
     {
+        [BeforeScenario]
+        public void BeforeScenario()
+        {
+            RequestToEndpoint("GET", "/books");
+            ExecuteRequest();
+
+            var response = JsonConvert.DeserializeObject<List<Dictionary<string, object>>>(Request.GetResponseMessage());
+
+            foreach (var obj in response)
+            {
+                RequestToEndpoint("DELETE", $"/books/{obj["Id"]}");
+                ExecuteRequest();
+            }
+        }
+
+
         [StepDefinition(@"'(.*)' request to '(.*)' endpoint")]
         public void RequestToEndpoint(string requestMethod, string endpoint)
         {

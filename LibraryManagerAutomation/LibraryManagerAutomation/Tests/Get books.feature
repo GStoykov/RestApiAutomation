@@ -4,13 +4,7 @@
 	I want to be able request such information through endpoints
 
 
-#| Id | Title       | Description       | Author       |
-#| 1  | Aaa Bbb Ccc | Test Description1 | Test Author1 |
-#| 2  | Aaa Ddd Eee | Test Description2 | Test Author2 |
-#| 3  | Aaa Fff Ggg | Test Description2 | Test Author3 |
-
-
-@bugAuthorNull
+@bug1
 Scenario: Users can retrieve all books in the library
 	Given Following books in library:
          | Id | Title       | Description       | Author       |
@@ -26,45 +20,48 @@ Scenario: Users can retrieve all books in the library
 
 
 #Query: 1.Should books filtering be case-sensitive?
-@bugAuthorNull
-Scenario Outline: Users can retrieve books by 'title' containing specific text
+@bug1
+Scenario Outline: Users can retrieve books by "title" containing specific text
 	Given Following books in library:
 		 | Id | Title       | Description           | Author           |
 		 | 1  | Aaa Bbb Ccc | Test Description1     | Test Author1     |
 		 | 2  | KKK Ddd Eee | Aaa Test Description2 | Test Author2     |
 		 | 3  | NNN Ddd Eee | Aaa Test Description2 | Aaa Test Author2 |
-		 | 4  | Aaa Fff Ggg | Test Description2     | Test Author3     |
+		 | 4  | Aaa Bbb Ggg | Test Description4     | Test Author4     |
 	When 'GET' request to '/books?<filter>=<filterValue>' endpoint
 	And Execute request
 	Then Response code is '200'
-	Then Response is collection of:
+	And Response is collection of:
 		 | Id | Title       | Description       | Author       |
 		 | 1  | Aaa Bbb Ccc | Test Description1 | Test Author1 |
-		 | 4  | Aaa Fff Ggg | Test Description2 | Test Author3 |
+		 | 4  | Aaa Fff Ggg | Test Description4 | Test Author4 |
 
 Examples: 
 | filter | filterValue |
 | title  | Aaa         |
+| title  | Aaa Bbb     |
 | Title  | Aaa         |
-#assumed:
-| title  | aaa         |
+#query
+#| title  | aaa         |
 
 
+#Query: 2. What response code should be returned when books were not found 200 or 404? What error message should be returned in this case?
+@assumedBug2
 Scenario: Retrieving books by non-existing title
 	Given Following books in library:
 		 | Id | Title       | Description           | Author           |
 		 | 1  | Aaa Bbb Ccc | Test Description1     | Test Author1     |
 		 | 2  | KKK Ddd Eee | Aaa Test Description2 | Test Author2     |
-		 | 3  | NNN Ddd Eee | Aaa Test Description2 | Aaa Test Author2 |
-		 | 4  | Aaa Fff Ggg | Test Description2     | Test Author3     |
 	When 'GET' request to '/books?title=Ppp' endpoint
 	And Execute request
-	Then Response is collection of:
+	Then Response code is '404'
+	And Response is collection of:
 		 ||
 
 
-#Query: 2. Should books filtering be possible only by "title"
-Scenario Outline: Users cannot filter books by properties different than "title"
+#Query: 3. Should books filtering be available only by "title"
+@bug3
+Scenario Outline: Users cannot filter books by properties other than "title"
 	Given Following books in library:
          | Id | Title       | Description      | Author      |
          | 1  | Test Title1 | Aaa Description1 | Bbb Author1 |
@@ -72,7 +69,8 @@ Scenario Outline: Users cannot filter books by properties different than "title"
          | 3  | Aaa Title3  | Bbb Description3 | Ccc Author3 |
 	When 'GET' request to '/books?<filter>=<filterValue>' endpoint
 	And Execute request
-	Then Response is collection of:
+	Then Response code is '400'
+	And Response is collection of:
 		 ||
 
 Examples: 
@@ -81,46 +79,36 @@ Examples:
 | Author      | Aaa         |
 
 
-
-#Query: 3. What should be the response on attempt to retrieve empty libraby?
 Scenario: Retrieving all books when there are none
 	Given 'GET' request to '/books' endpoint
 	And Execute request
+	Then Response code is '200'
 	And Response is collection of:
 	||
 
 
-@assumedExpectedResult
-Scenario: Get books by id
+@bug1
+Scenario: Users can retrieve book by its id
 	Given Following books in library:
-         | Id | Title       | Description       | Author       |
-         | 1  | Aaa Bbb Ccc | Test Description1 | Test Author1 |
-	When 'GET' request to '/books/1' endpoint
+        | Id | Title       | Description       | Author       |
+        | 3  | Aaa Bbb Ccc | Test Description1 | Test Author1 |
+	When 'GET' request to '/books/3' endpoint
 	And Execute request
-	Then Response is:
+	Then Response code is '200'
+	And Response is:
 		| Id | Title       | Description       | Author       |
-		| 1  | Aaa Bbb Ccc | Test Description1 | Test Author1 |
+		| 3  | Aaa Bbb Ccc | Test Description1 | Test Author1 |
 	
-#
-#Scenario: Get unexisting book by id
-#	Given 'GET' request to '/books/9' endpoint
-#	And Execute request
-#	Then Response is:
-#	| Message                   |
-#	| Book with id 9 not found! |
-#
-#
-#Scenario Outline: Get book by filter
-#	Given Following books in library:
-#         | Id | Title       | Description      | Author      |
-#         | 1  | Test Title1 | TestDescription1 | TestAuthor1 |
-#         | 2  | Test Title2 | TestDescription2 | TestAuthor2 |
-#	When 'GET' request to '/books?title=<filterText>' endpoint
-#	And Execute request
-#	Then Response is collection of:
-#		 | Id | Title       | Description      | Author      |
-#         | 1  | Test Title1 | TestDescription1 | TestAuthor1 |
-#	Examples: 
-#	| filterText |
-#	| Title1     |
-#	| Title3     |
+
+
+Scenario: Message is returned when retrieving non-existing book by id 
+Given Following books in library:
+        | Id | Title       | Description       | Author       |
+        | 1  | Aaa Bbb Ccc | Test Description1 | Test Author1 |
+	When 'GET' request to '/books/6' endpoint
+	And Execute request
+	Then Response code is '404'
+	And Response is:
+		| Message                   |
+		| Book with id 6 not found! |
+

@@ -86,6 +86,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Get books.feature</DependentUpon>
     </Compile>
+    <Compile Include="Tests\Update books.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Update books.feature</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
@@ -99,6 +104,10 @@
     <None Include="Tests\Get books.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>Get books.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Tests\Update books.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>Update books.feature.cs</LastGenOutput>
     </None>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />

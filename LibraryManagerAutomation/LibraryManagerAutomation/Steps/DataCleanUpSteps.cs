@@ -19,17 +19,17 @@ namespace LibraryManagerAutomation.Steps
         [AfterScenario()]
         public void AddBooksInLibrary()
         {
-            GeneralSteps step = new GeneralSteps();
-            step.RequestToEndpoint("GET", "/books");
-            step.ExecuteRequest();
+            //GeneralSteps step = new GeneralSteps();
+            //step.RequestToEndpoint("GET", "/books");
+            //step.ExecuteRequest();
 
-            var response = JsonConvert.DeserializeObject<List<Dictionary<string, object>>>(Request.GetResponseMessage());
+            //var response = JsonConvert.DeserializeObject<List<Dictionary<string, object>>>(Request.GetResponseMessage());
 
-            foreach (var obj in response)
-            {
-                step.RequestToEndpoint("DELETE", $"/books/{obj["Id"]}");
-                step.ExecuteRequest();
-            } 
+            //foreach (var obj in response)
+            //{
+            //    step.RequestToEndpoint("DELETE", $"/books/{obj["Id"]}");
+            //    step.ExecuteRequest();
+            //} 
         }
     }
 }
