@@ -20,12 +20,14 @@ namespace LibraryManagerAutomation
             ExecuteRequest();
 
             var response = JsonConvert.DeserializeObject<List<Dictionary<string, object>>>(Request.GetResponseMessage());
-
             foreach (var obj in response)
             {
                 RequestToEndpoint("DELETE", $"/books/{obj["Id"]}");
                 ExecuteRequest();
             }
+
+            ScenarioContext.Current.Set<object>(null, "$null");
+
         }
 
 
@@ -44,11 +46,13 @@ namespace LibraryManagerAutomation
             Request.ExecuteRequest();
         }
 
+
         [StepDefinition(@"Response code is '(\d+)'")]
         public void ResponseCodeId(int code)
         {
             Assert.AreEqual((HttpStatusCode)code, Request.GetResponseCode(), "Different response status code was returned:");
         }
+
 
         [StepDefinition(@"Response is( collection of)?:")]
         public void ResponseIs(string isCollection, Table table)
@@ -91,6 +95,13 @@ namespace LibraryManagerAutomation
             {
                 // To implement in future if needed
             }
+        }
+
+
+        [StepDefinition(@"Add request payload as plain JSON:")]
+        public void AddContentToBodyAsPlainJSON(string plainJSON)
+        {
+            Request.AddContent(plainJSON);
         }
 
 

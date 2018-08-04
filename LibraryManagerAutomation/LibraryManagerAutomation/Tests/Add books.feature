@@ -94,13 +94,20 @@ Examples:
 
 
 @bug1
-Scenario Outline: Users can add special symbols for book Title, Description and Author
+Scenario Outline: Users can use special symbols in book's "Title", "Description" and "Author"
 	Given 'POST' request to '/books' endpoint
 	And Add request payload as JSON object:
 		| Id   | Title   | Description   | Author   |
 		| <id> | <title> | <description> | <author> |
 	When Execute request
-	Then Response code is '400'
+	Then Response code is '200'
+
+	Then 'GET' request to '/books/<id>' endpoint
+	And Execute request
+	Then Response code is '200'
+	And Response is:
+		| Id   | Title   | Description   | Author   |
+		| <id> | <title> | <description> | <author> |
 
 Examples: 
 | id  | title         | description         | author         |
@@ -128,3 +135,10 @@ Examples:
 #	And Response is:
 #		| Id | Title       | Description       | Author       |
 #		| 1  | Test Title1 | Test Description1 | Test Author1 |
+
+
+
+
+# Adding book by not providing all details
+# adding book by providing null
+# Adding book by prodiving invalid pameters in invalid format

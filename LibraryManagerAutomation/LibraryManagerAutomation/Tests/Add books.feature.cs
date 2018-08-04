@@ -261,12 +261,12 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Users can add special symbols for book Title, Description and Author")]
+        [NUnit.Framework.DescriptionAttribute("Users can use special symbols in book\'s \"Title\", \"Description\" and \"Author\"")]
         [NUnit.Framework.CategoryAttribute("bug1")]
         [NUnit.Framework.TestCaseAttribute("1", "Test Title", "Test@#\' Description", "Test Author", null)]
         [NUnit.Framework.TestCaseAttribute("1", "Test@#\' Title", "Test Description", "Test Author", null)]
         [NUnit.Framework.TestCaseAttribute("1", "Test Title", "Test Description", "Test@#\' Author", null)]
-        public virtual void UsersCanAddSpecialSymbolsForBookTitleDescriptionAndAuthor(string id, string title, string description, string author, string[] exampleTags)
+        public virtual void UsersCanUseSpecialSymbolsInBooksTitleDescriptionAndAuthor(string id, string title, string description, string author, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "bug1"};
@@ -274,7 +274,7 @@ this.ScenarioSetup(scenarioInfo);
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
             }
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Users can add special symbols for book Title, Description and Author", @__tags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Users can use special symbols in book\'s \"Title\", \"Description\" and \"Author\"", @__tags);
 #line 97
 this.ScenarioSetup(scenarioInfo);
 #line 98
@@ -295,7 +295,26 @@ this.ScenarioSetup(scenarioInfo);
 #line 102
  testRunner.When("Execute request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 103
- testRunner.Then("Response code is \'400\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("Response code is \'200\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 105
+ testRunner.Then(string.Format("\'GET\' request to \'/books/{0}\' endpoint", id), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 106
+ testRunner.And("Execute request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 107
+ testRunner.Then("Response code is \'200\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            TechTalk.SpecFlow.Table table12 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Id",
+                        "Title",
+                        "Description",
+                        "Author"});
+            table12.AddRow(new string[] {
+                        string.Format("{0}", id),
+                        string.Format("{0}", title),
+                        string.Format("{0}", description),
+                        string.Format("{0}", author)});
+#line 108
+ testRunner.And("Response is:", ((string)(null)), table12, "And ");
 #line hidden
             this.ScenarioCleanup();
         }

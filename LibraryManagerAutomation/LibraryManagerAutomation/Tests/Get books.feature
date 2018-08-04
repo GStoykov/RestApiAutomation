@@ -96,8 +96,28 @@ Scenario: Users can retrieve book by its id
 	And Execute request
 	Then Response code is '200'
 	And Response is:
-		| Id | Title       | Description       | Author       |
-		| 3  | Aaa Bbb Ccc | Test Description1 | Test Author1 |
+		| Id | Title       | Description       | Author |
+		| 3  | Aaa Bbb Ccc | Test Description1 | $null  |
+	
+
+Scenario: Made up
+	#Given Following books in library:
+ #       | Id | Title       | Description       | Author       |
+ #       | 3  | Aaa Bbb Ccc | Test Description1 | Test Author1 |
+	When 'POST' request to '/books' endpoint
+	Then Add request payload as plain JSON: 
+	"""
+	{"Id":3,"Title":"Aaa Bbb Ccc","Description":"Test Description1","Author":"Test Author1"}
+	"""
+
+	And Execute request
+	Then Response code is '200'
+	And Response is:
+		| Id | Title       | Description       | Author |
+		| 3  | Aaa Bbb Ccc | Test Description1 | $null  |
+
+
+
 	
 
 

@@ -40,6 +40,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.VisualStudio.TestPlatform.TestFramework, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\MSTest.TestFramework.1.1.11\lib\net45\Microsoft.VisualStudio.TestPlatform.TestFramework.dll</HintPath>
     </Reference>
@@ -81,6 +82,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Add books.feature</DependentUpon>
     </Compile>
+    <Compile Include="Tests\Delete books.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Delete books.feature</DependentUpon>
+    </Compile>
     <Compile Include="Tests\Get books.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -100,6 +106,10 @@
     <None Include="Tests\Add books.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>Add books.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Tests\Delete books.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>Delete books.feature.cs</LastGenOutput>
     </None>
     <None Include="Tests\Get books.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>

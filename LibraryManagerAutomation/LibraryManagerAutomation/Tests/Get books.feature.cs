@@ -348,9 +348,43 @@ this.ScenarioSetup(scenarioInfo);
                         "3",
                         "Aaa Bbb Ccc",
                         "Test Description1",
-                        "Test Author1"});
+                        "$null"});
 #line 98
  testRunner.And("Response is:", ((string)(null)), table11, "And ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Made up")]
+        public virtual void MadeUp()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Made up", ((string[])(null)));
+#line 103
+this.ScenarioSetup(scenarioInfo);
+#line 107
+ testRunner.When("\'POST\' request to \'/books\' endpoint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 108
+ testRunner.Then("Add request payload as plain JSON:", "{\"Id\":3,\"Title\":\"Aaa Bbb Ccc\",\"Description\":\"Test Description1\",\"Author\":\"Test Au" +
+                    "thor1\"}", ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 113
+ testRunner.And("Execute request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 114
+ testRunner.Then("Response code is \'200\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            TechTalk.SpecFlow.Table table12 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Id",
+                        "Title",
+                        "Description",
+                        "Author"});
+            table12.AddRow(new string[] {
+                        "3",
+                        "Aaa Bbb Ccc",
+                        "Test Description1",
+                        "$null"});
+#line 115
+ testRunner.And("Response is:", ((string)(null)), table12, "And ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -360,34 +394,34 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void MessageIsReturnedWhenRetrievingNon_ExistingBookById()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Message is returned when retrieving non-existing book by id", ((string[])(null)));
-#line 104
+#line 124
 this.ScenarioSetup(scenarioInfo);
 #line hidden
-            TechTalk.SpecFlow.Table table12 = new TechTalk.SpecFlow.Table(new string[] {
+            TechTalk.SpecFlow.Table table13 = new TechTalk.SpecFlow.Table(new string[] {
                         "Id",
                         "Title",
                         "Description",
                         "Author"});
-            table12.AddRow(new string[] {
+            table13.AddRow(new string[] {
                         "1",
                         "Aaa Bbb Ccc",
                         "Test Description1",
                         "Test Author1"});
-#line 105
-testRunner.Given("Following books in library:", ((string)(null)), table12, "Given ");
-#line 108
+#line 125
+testRunner.Given("Following books in library:", ((string)(null)), table13, "Given ");
+#line 128
  testRunner.When("\'GET\' request to \'/books/6\' endpoint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 109
+#line 129
  testRunner.And("Execute request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 110
+#line 130
  testRunner.Then("Response code is \'404\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-            TechTalk.SpecFlow.Table table13 = new TechTalk.SpecFlow.Table(new string[] {
+            TechTalk.SpecFlow.Table table14 = new TechTalk.SpecFlow.Table(new string[] {
                         "Message"});
-            table13.AddRow(new string[] {
+            table14.AddRow(new string[] {
                         "Book with id 6 not found!"});
-#line 111
- testRunner.And("Response is:", ((string)(null)), table13, "And ");
+#line 131
+ testRunner.And("Response is:", ((string)(null)), table14, "And ");
 #line hidden
             this.ScenarioCleanup();
         }

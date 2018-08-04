@@ -28,17 +28,9 @@ namespace LibraryManagerAutomation
                 {
                     Assert.AreEqual(expected[key], actual[key], key);
                 }
-                else if (actual[key] is decimal)
-                {
-                    Assert.AreEqual(Convert.ToDecimal(expected[key]), Convert.ToDecimal(actual[key]), key);
-                }
                 else if (actual[key] is double || Double.TryParse(expected[key].ToString(), out x))
                 {
                     Assert.AreEqual(Convert.ToDouble(expected[key]), Convert.ToDouble(actual[key]), key);
-                }
-                else if (actual[key] is long)
-                {
-                    Assert.AreEqual(Convert.ToInt64(expected[key]), Convert.ToInt64(actual[key]), key);
                 }
                 else if (actual[key] is int)
                 {

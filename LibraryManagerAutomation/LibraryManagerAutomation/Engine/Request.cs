@@ -41,14 +41,11 @@ namespace LibraryManagerAutomation
         }
 
 
-        public RestRequest AddContent(object content, string type = "application/json")
+        public RestRequest AddContent(object content)
         {
-            if (type.Contains("json"))
-                _request.RequestFormat = DataFormat.Json;
-
+            _request.RequestFormat = DataFormat.Json;
             _request.AddBody(content);
-            _request.Parameters.Find(x => x.Type == ParameterType.RequestBody).Name = type;
-            _request.AddParameter(type, content, ParameterType.RequestBody);
+            _request.AddParameter("application/json", content, ParameterType.RequestBody);
 
             return _request;
         }
