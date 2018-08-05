@@ -411,12 +411,12 @@ this.ScenarioSetup(scenarioInfo);
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Users can delete book\'s description")]
         [NUnit.Framework.CategoryAttribute("bug1")]
-        [NUnit.Framework.CategoryAttribute("bug9")]
+        [NUnit.Framework.CategoryAttribute("bug5")]
         public virtual void UsersCanDeleteBooksDescription()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Users can delete book\'s description", new string[] {
                         "bug1",
-                        "bug9"});
+                        "bug5"});
 #line 127
 this.ScenarioSetup(scenarioInfo);
 #line hidden

@@ -123,7 +123,7 @@ Scenario: Users can skip passing parameter "Description" when updatding a book
 		| 1  | Test Title1 | Test Description1 | Test Author1 |
 
 
-@bug1 @bug9
+@bug1 @bug5
 Scenario: Users can delete book's description
 	Given Following books in library:
         | Id | Title       | Description       | Author       |
