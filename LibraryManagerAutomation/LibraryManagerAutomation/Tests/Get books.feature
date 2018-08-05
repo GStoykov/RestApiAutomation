@@ -19,8 +19,7 @@ Scenario: Users can retrieve all books in the library
          | 2  | Aaa Ddd Eee | Test Description2 | Test Author2 |
 
 
-#Query: 1.Should books filtering be case-sensitive?
-@bug1
+@bug1 @query1
 Scenario Outline: Users can retrieve books by "title" containing specific text
 	Given Following books in library:
 		 | Id | Title       | Description           | Author           |
@@ -45,8 +44,7 @@ Examples:
 #| title  | aaa         |
 
 
-#Query: 2. What response code should be returned when books were not found 200 or 404? What error message should be returned in this case?
-@assumedBug2
+@bug2
 Scenario: Retrieving books by non-existing title
 	Given Following books in library:
 		 | Id | Title       | Description           | Author           |
@@ -59,8 +57,7 @@ Scenario: Retrieving books by non-existing title
 		 ||
 
 
-#Query: 3. Should books filtering be available only by "title"
-@bug3
+@bug3 @query3
 Scenario Outline: Users cannot filter books by properties other than "title"
 	Given Following books in library:
          | Id | Title       | Description      | Author      |
@@ -96,30 +93,9 @@ Scenario: Users can retrieve book by its id
 	And Execute request
 	Then Response code is '200'
 	And Response is:
-		| Id | Title       | Description       | Author |
-		| 3  | Aaa Bbb Ccc | Test Description1 | $null  |
+		| Id | Title       | Description       | Author       |
+		| 3  | Aaa Bbb Ccc | Test Description1 | Test Author1 |
 	
-
-Scenario: Made up
-	#Given Following books in library:
- #       | Id | Title       | Description       | Author       |
- #       | 3  | Aaa Bbb Ccc | Test Description1 | Test Author1 |
-	When 'POST' request to '/books' endpoint
-	Then Add request payload as plain JSON: 
-	"""
-	{"Id":3,"Title":"Aaa Bbb Ccc","Description":"Test Description1","Author":"Test Author1"}
-	"""
-
-	And Execute request
-	Then Response code is '200'
-	And Response is:
-		| Id | Title       | Description       | Author |
-		| 3  | Aaa Bbb Ccc | Test Description1 | $null  |
-
-
-
-	
-
 
 Scenario: Message is returned when retrieving non-existing book by id 
 Given Following books in library:

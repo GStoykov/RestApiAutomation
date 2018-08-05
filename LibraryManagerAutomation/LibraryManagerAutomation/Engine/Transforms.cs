@@ -56,13 +56,17 @@ namespace LibraryManagerAutomation
                     {
                         var contextValue = ScenarioContext.Current[match.Value];
                         contextValue = GetValueWithType(contextValue);
+
                         if (contextValue is string)
-                            resultObj = input.Replace(match.Value, contextValue);
+                            input = input.Replace(match.Value, contextValue);
                         else
                             resultObj = contextValue;
                     }
                 }
             }
+
+            if (resultObj is string)
+                resultObj = ForceConvertValue(input);
 
             return resultObj;
         }
@@ -89,6 +93,28 @@ namespace LibraryManagerAutomation
             }
 
             return contextValue;
+        }
+
+
+        public static object ForceConvertValue(string input)
+        {
+            var typeName = Regex.Match(input, @"(?<={)(.*)(?=})");
+
+            dynamic resultObj = input;
+            if (typeName.Groups.Count > 1)
+            {
+                resultObj = input.Replace($"{{{typeName.Value}}}", "");
+                if (typeName.Value == "int" && input.StartsWith($"{{{typeName.Value}}}"))
+                {
+                    resultObj = Convert.ToInt32(resultObj);
+                }
+                else if(typeName.Value == "noEsc" && input.StartsWith($"{{{typeName.Value}}}"))
+                {
+                    // To implemenmt special escace if "\r\n" is not an issue
+                }
+            }
+
+            return resultObj;
         }
     }
 }

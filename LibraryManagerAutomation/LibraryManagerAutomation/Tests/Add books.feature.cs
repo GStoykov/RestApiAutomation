@@ -129,138 +129,6 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Users cannot add a book, when there is already another in the library with the sa" +
-            "me \"id\"")]
-        [NUnit.Framework.CategoryAttribute("bug1")]
-        public virtual void UsersCannotAddABookWhenThereIsAlreadyAnotherInTheLibraryWithTheSameId()
-        {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Users cannot add a book, when there is already another in the library with the sa" +
-                    "me \"id\"", new string[] {
-                        "bug1"});
-#line 27
-this.ScenarioSetup(scenarioInfo);
-#line hidden
-            TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
-                        "Id",
-                        "Title",
-                        "Description",
-                        "Author"});
-            table4.AddRow(new string[] {
-                        "2",
-                        "Test Title1",
-                        "Test Description1",
-                        "Test Author1"});
-#line 28
- testRunner.Given("Following books in library:", ((string)(null)), table4, "Given ");
-#line 31
- testRunner.When("\'POST\' request to \'/books\' endpoint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
-            TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[] {
-                        "Id",
-                        "Title",
-                        "Description",
-                        "Author"});
-            table5.AddRow(new string[] {
-                        "2",
-                        "Aaa Bbb Ccc",
-                        "Test Description2",
-                        "Test Author2"});
-#line 32
- testRunner.And("Add request payload as JSON object:", ((string)(null)), table5, "And ");
-#line 35
- testRunner.And("Execute request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 36
- testRunner.Then("Response code is \'400\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-            TechTalk.SpecFlow.Table table6 = new TechTalk.SpecFlow.Table(new string[] {
-                        "Message"});
-            table6.AddRow(new string[] {
-                        "Book with id 2 already exists!"});
-#line 37
- testRunner.And("Response is:", ((string)(null)), table6, "And ");
-#line 41
- testRunner.Then("\'GET\' request to \'/books/2\' endpoint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 42
- testRunner.And("Execute request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 43
- testRunner.Then("Response code is \'200\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-            TechTalk.SpecFlow.Table table7 = new TechTalk.SpecFlow.Table(new string[] {
-                        "Id",
-                        "Title",
-                        "Description",
-                        "Author"});
-            table7.AddRow(new string[] {
-                        "2",
-                        "Test Title1",
-                        "Test Description1",
-                        "Test Author1"});
-#line 44
- testRunner.And("Response is:", ((string)(null)), table7, "And ");
-#line hidden
-            this.ScenarioCleanup();
-        }
-        
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Users cannot add book with invalid parameters")]
-        [NUnit.Framework.CategoryAttribute("bug1")]
-        [NUnit.Framework.CategoryAttribute("assumedBug4")]
-        [NUnit.Framework.TestCaseAttribute("fsd", "Test Title", "Test Description", "Test Author", null)]
-        [NUnit.Framework.TestCaseAttribute("1@", "Test Title", "Test Description", "Test Author", null)]
-        public virtual void UsersCannotAddBookWithInvalidParameters(string id, string title, string description, string author, string[] exampleTags)
-        {
-            string[] @__tags = new string[] {
-                    "bug1",
-                    "assumedBug4"};
-            if ((exampleTags != null))
-            {
-                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
-            }
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Users cannot add book with invalid parameters", @__tags);
-#line 72
-this.ScenarioSetup(scenarioInfo);
-#line 73
- testRunner.Given("\'POST\' request to \'/books\' endpoint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line hidden
-            TechTalk.SpecFlow.Table table8 = new TechTalk.SpecFlow.Table(new string[] {
-                        "Id",
-                        "Title",
-                        "Description",
-                        "Author"});
-            table8.AddRow(new string[] {
-                        string.Format("{0}", id),
-                        string.Format("{0}", title),
-                        string.Format("{0}", description),
-                        string.Format("{0}", author)});
-#line 74
- testRunner.And("Add request payload as JSON object:", ((string)(null)), table8, "And ");
-#line 77
- testRunner.When("Execute request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 78
- testRunner.Then("Response code is \'400\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-            TechTalk.SpecFlow.Table table9 = new TechTalk.SpecFlow.Table(new string[] {
-                        "Message"});
-            table9.AddRow(new string[] {
-                        "Book.Id should be a positive integer! Parameter name: book.Id"});
-#line 79
- testRunner.And("Response is:", ((string)(null)), table9, "And ");
-#line 83
- testRunner.Then("\'GET\' request to \'/books/2\' endpoint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 84
- testRunner.And("Execute request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 85
- testRunner.Then("Response code is \'404\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-            TechTalk.SpecFlow.Table table10 = new TechTalk.SpecFlow.Table(new string[] {
-                        ""});
-#line 86
- testRunner.And("Response is collection of:", ((string)(null)), table10, "And ");
-#line hidden
-            this.ScenarioCleanup();
-        }
-        
-        [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Users can use special symbols in book\'s \"Title\", \"Description\" and \"Author\"")]
         [NUnit.Framework.CategoryAttribute("bug1")]
         [NUnit.Framework.TestCaseAttribute("1", "Test Title", "Test@#\' Description", "Test Author", null)]
@@ -275,10 +143,169 @@ this.ScenarioSetup(scenarioInfo);
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
             }
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Users can use special symbols in book\'s \"Title\", \"Description\" and \"Author\"", @__tags);
-#line 97
+#line 27
 this.ScenarioSetup(scenarioInfo);
-#line 98
+#line 28
  testRunner.Given("\'POST\' request to \'/books\' endpoint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+            TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Id",
+                        "Title",
+                        "Description",
+                        "Author"});
+            table4.AddRow(new string[] {
+                        string.Format("{0}", id),
+                        string.Format("{0}", title),
+                        string.Format("{0}", description),
+                        string.Format("{0}", author)});
+#line 29
+ testRunner.And("Add request payload as JSON object:", ((string)(null)), table4, "And ");
+#line 32
+ testRunner.When("Execute request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 33
+ testRunner.Then("Response code is \'200\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 35
+ testRunner.Then(string.Format("\'GET\' request to \'/books/{0}\' endpoint", id), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 36
+ testRunner.And("Execute request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 37
+ testRunner.Then("Response code is \'200\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Id",
+                        "Title",
+                        "Description",
+                        "Author"});
+            table5.AddRow(new string[] {
+                        string.Format("{0}", id),
+                        string.Format("{0}", title),
+                        string.Format("{0}", description),
+                        string.Format("{0}", author)});
+#line 38
+ testRunner.And("Response is:", ((string)(null)), table5, "And ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Users can create a book with max characters for parameter(s)")]
+        [NUnit.Framework.CategoryAttribute("bug1")]
+        [NUnit.Framework.CategoryAttribute("bug7")]
+        [NUnit.Framework.TestCaseAttribute("1", "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" +
+            "aaaaaaaaaaaaaaaaaaa", "Test author", null)]
+        [NUnit.Framework.TestCaseAttribute("1", "Test title", "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", null)]
+        public virtual void UsersCanCreateABookWithMaxCharactersForParameterS(string id, string title, string author, string[] exampleTags)
+        {
+            string[] @__tags = new string[] {
+                    "bug1",
+                    "bug7"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Users can create a book with max characters for parameter(s)", @__tags);
+#line 50
+this.ScenarioSetup(scenarioInfo);
+#line 51
+ testRunner.Given("\'POST\' request to \'/books\' endpoint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+            TechTalk.SpecFlow.Table table6 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Id",
+                        "Title",
+                        "Description",
+                        "Author"});
+            table6.AddRow(new string[] {
+                        string.Format("{0}", id),
+                        string.Format("{0}", title),
+                        "Test Description",
+                        string.Format("{0}", author)});
+#line 52
+ testRunner.And("Add request payload as JSON object:", ((string)(null)), table6, "And ");
+#line 55
+ testRunner.And("Execute request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 56
+ testRunner.Then("Response code is \'200\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            TechTalk.SpecFlow.Table table7 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Id",
+                        "Title",
+                        "Description",
+                        "Author"});
+            table7.AddRow(new string[] {
+                        string.Format("{0}", id),
+                        string.Format("{0}", title),
+                        "Test Description",
+                        string.Format("{0}", author)});
+#line 57
+ testRunner.And("Response is:", ((string)(null)), table7, "And ");
+#line 61
+ testRunner.Then("\'GET\' request to \'/books\' endpoint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 62
+ testRunner.And("Execute request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 63
+ testRunner.Then("Response code is \'200\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            TechTalk.SpecFlow.Table table8 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Id",
+                        "Title",
+                        "Description",
+                        "Author"});
+            table8.AddRow(new string[] {
+                        string.Format("{0}", id),
+                        string.Format("{0}", title),
+                        "Test Description",
+                        string.Format("{0}", author)});
+#line 64
+ testRunner.And("Response is collection of:", ((string)(null)), table8, "And ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Users can add new book without passing parameter \"Description\"")]
+        [NUnit.Framework.CategoryAttribute("bug1")]
+        public virtual void UsersCanAddNewBookWithoutPassingParameterDescription()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Users can add new book without passing parameter \"Description\"", new string[] {
+                        "bug1"});
+#line 77
+this.ScenarioSetup(scenarioInfo);
+#line 78
+ testRunner.Given("\'POST\' request to \'/books\' endpoint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+            TechTalk.SpecFlow.Table table9 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Id",
+                        "Title",
+                        "Author"});
+            table9.AddRow(new string[] {
+                        "1",
+                        "Test Title1",
+                        "Test Author1"});
+#line 79
+ testRunner.And("Add request payload as JSON object:", ((string)(null)), table9, "And ");
+#line 82
+ testRunner.And("Execute request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 83
+ testRunner.Then("Response code is \'200\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            TechTalk.SpecFlow.Table table10 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Id",
+                        "Title",
+                        "Description",
+                        "Author"});
+            table10.AddRow(new string[] {
+                        "1",
+                        "Test Title1",
+                        "$null",
+                        "Test Author1"});
+#line 84
+ testRunner.And("Response is:", ((string)(null)), table10, "And ");
+#line 88
+ testRunner.Then("\'GET\' request to \'/books/1\' endpoint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 89
+ testRunner.And("Execute request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 90
+ testRunner.Then("Response code is \'200\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             TechTalk.SpecFlow.Table table11 = new TechTalk.SpecFlow.Table(new string[] {
                         "Id",
@@ -286,22 +313,27 @@ this.ScenarioSetup(scenarioInfo);
                         "Description",
                         "Author"});
             table11.AddRow(new string[] {
-                        string.Format("{0}", id),
-                        string.Format("{0}", title),
-                        string.Format("{0}", description),
-                        string.Format("{0}", author)});
-#line 99
- testRunner.And("Add request payload as JSON object:", ((string)(null)), table11, "And ");
-#line 102
- testRunner.When("Execute request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 103
- testRunner.Then("Response code is \'200\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 105
- testRunner.Then(string.Format("\'GET\' request to \'/books/{0}\' endpoint", id), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 106
- testRunner.And("Execute request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 107
- testRunner.Then("Response code is \'200\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+                        "1",
+                        "Test Title1",
+                        "$null",
+                        "Test Author1"});
+#line 91
+ testRunner.And("Response is:", ((string)(null)), table11, "And ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Users can add new book with empty \"Description\"")]
+        [NUnit.Framework.CategoryAttribute("bug1")]
+        public virtual void UsersCanAddNewBookWithEmptyDescription()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Users can add new book with empty \"Description\"", new string[] {
+                        "bug1"});
+#line 97
+this.ScenarioSetup(scenarioInfo);
+#line 98
+ testRunner.Given("\'POST\' request to \'/books\' endpoint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
             TechTalk.SpecFlow.Table table12 = new TechTalk.SpecFlow.Table(new string[] {
                         "Id",
@@ -309,12 +341,423 @@ this.ScenarioSetup(scenarioInfo);
                         "Description",
                         "Author"});
             table12.AddRow(new string[] {
+                        "1",
+                        "Test Title1",
+                        "$null",
+                        "Test Author1"});
+#line 99
+ testRunner.And("Add request payload as JSON object:", ((string)(null)), table12, "And ");
+#line 102
+ testRunner.And("Execute request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 103
+ testRunner.Then("Response code is \'200\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            TechTalk.SpecFlow.Table table13 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Id",
+                        "Title",
+                        "Description",
+                        "Author"});
+            table13.AddRow(new string[] {
+                        "1",
+                        "Test Title1",
+                        "$null",
+                        "Test Author1"});
+#line 104
+ testRunner.And("Response is:", ((string)(null)), table13, "And ");
+#line 108
+ testRunner.Then("\'GET\' request to \'/books/1\' endpoint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 109
+ testRunner.And("Execute request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 110
+ testRunner.Then("Response code is \'200\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            TechTalk.SpecFlow.Table table14 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Id",
+                        "Title",
+                        "Description",
+                        "Author"});
+            table14.AddRow(new string[] {
+                        "1",
+                        "Test Title1",
+                        "$null",
+                        "Test Author1"});
+#line 111
+ testRunner.And("Response is:", ((string)(null)), table14, "And ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Users cannot create a book by exceeding parameter value constaints")]
+        [NUnit.Framework.CategoryAttribute("bug1")]
+        [NUnit.Framework.CategoryAttribute("bug4")]
+        [NUnit.Framework.TestCaseAttribute("0", "Test title", "Test author", "Book.Id should be a positive integer! Parameter name: book.Id", null)]
+        [NUnit.Framework.TestCaseAttribute("1", "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" +
+            "aaaaaaaaaaaaaaaaaaaZ", "Test author", "Book.Title should not exceed 100 characters! Parameter name: Book.Title", null)]
+        [NUnit.Framework.TestCaseAttribute("1", "Test title", "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaZ", "Book.Author should not exceed 30 characters! Parameter name: Book.Author", null)]
+        public virtual void UsersCannotCreateABookByExceedingParameterValueConstaints(string id, string title, string author, string message, string[] exampleTags)
+        {
+            string[] @__tags = new string[] {
+                    "bug1",
+                    "bug4"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Users cannot create a book by exceeding parameter value constaints", @__tags);
+#line 117
+this.ScenarioSetup(scenarioInfo);
+#line 118
+ testRunner.Given("\'POST\' request to \'/books\' endpoint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+            TechTalk.SpecFlow.Table table15 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Id",
+                        "Title",
+                        "Description",
+                        "Author"});
+            table15.AddRow(new string[] {
+                        string.Format("{0}", id),
+                        string.Format("{0}", title),
+                        "Test Description",
+                        string.Format("{0}", author)});
+#line 119
+ testRunner.And("Add request payload as JSON object:", ((string)(null)), table15, "And ");
+#line 122
+ testRunner.And("Execute request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 123
+ testRunner.Then("Response code is \'400\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            TechTalk.SpecFlow.Table table16 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Message"});
+            table16.AddRow(new string[] {
+                        string.Format("{0}", message)});
+#line 124
+ testRunner.And("Response is:", ((string)(null)), table16, "And ");
+#line 128
+ testRunner.Then("\'GET\' request to \'/books\' endpoint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 129
+ testRunner.And("Execute request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 130
+ testRunner.Then("Response code is \'200\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            TechTalk.SpecFlow.Table table17 = new TechTalk.SpecFlow.Table(new string[] {
+                        ""});
+#line 131
+ testRunner.And("Response is collection of:", ((string)(null)), table17, "And ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Users cannot add a book, when there is already another in the library with the sa" +
+            "me \"id\"")]
+        [NUnit.Framework.CategoryAttribute("bug1")]
+        public virtual void UsersCannotAddABookWhenThereIsAlreadyAnotherInTheLibraryWithTheSameId()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Users cannot add a book, when there is already another in the library with the sa" +
+                    "me \"id\"", new string[] {
+                        "bug1"});
+#line 144
+this.ScenarioSetup(scenarioInfo);
+#line hidden
+            TechTalk.SpecFlow.Table table18 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Id",
+                        "Title",
+                        "Description",
+                        "Author"});
+            table18.AddRow(new string[] {
+                        "2",
+                        "Test Title1",
+                        "Test Description1",
+                        "Test Author1"});
+#line 145
+ testRunner.Given("Following books in library:", ((string)(null)), table18, "Given ");
+#line 148
+ testRunner.When("\'POST\' request to \'/books\' endpoint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+            TechTalk.SpecFlow.Table table19 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Id",
+                        "Title",
+                        "Description",
+                        "Author"});
+            table19.AddRow(new string[] {
+                        "2",
+                        "Aaa Bbb Ccc",
+                        "Test Description2",
+                        "Test Author2"});
+#line 149
+ testRunner.And("Add request payload as JSON object:", ((string)(null)), table19, "And ");
+#line 152
+ testRunner.And("Execute request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 153
+ testRunner.Then("Response code is \'400\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            TechTalk.SpecFlow.Table table20 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Message"});
+            table20.AddRow(new string[] {
+                        "Book with id 2 already exists!"});
+#line 154
+ testRunner.And("Response is:", ((string)(null)), table20, "And ");
+#line 158
+ testRunner.Then("\'GET\' request to \'/books/2\' endpoint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 159
+ testRunner.And("Execute request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 160
+ testRunner.Then("Response code is \'200\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            TechTalk.SpecFlow.Table table21 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Id",
+                        "Title",
+                        "Description",
+                        "Author"});
+            table21.AddRow(new string[] {
+                        "2",
+                        "Test Title1",
+                        "Test Description1",
+                        "Test Author1"});
+#line 161
+ testRunner.And("Response is:", ((string)(null)), table21, "And ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Users cannot add book without providing \"Id\", \"Title\" and \"Author\"")]
+        [NUnit.Framework.CategoryAttribute("bug4")]
+        [NUnit.Framework.CategoryAttribute("bug6")]
+        [NUnit.Framework.TestCaseAttribute("Title", "Description", "Author", "Test title", "Test Description", "Test Author", "Book.Id should be a positive integer! Parameter name: book.Id", null)]
+        [NUnit.Framework.TestCaseAttribute("Id", "Description", "Author", "{int}1", "Test Description", "Test Author", "Book.Title is a required field. Parameter name: book.Title", null)]
+        [NUnit.Framework.TestCaseAttribute("Id", "Title", "Description", "{int}1", "Test title", "Test Description", "Book.Author is a required field. Parameter name: book.Author", null)]
+        public virtual void UsersCannotAddBookWithoutProvidingIdTitleAndAuthor(string property1, string property2, string property3, string property1_Value, string property2_Value, string property3_Value, string message, string[] exampleTags)
+        {
+            string[] @__tags = new string[] {
+                    "bug4",
+                    "bug6"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Users cannot add book without providing \"Id\", \"Title\" and \"Author\"", @__tags);
+#line 167
+this.ScenarioSetup(scenarioInfo);
+#line 168
+ testRunner.Given("\'POST\' request to \'/books\' endpoint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+            TechTalk.SpecFlow.Table table22 = new TechTalk.SpecFlow.Table(new string[] {
+                        string.Format("{0}", property1),
+                        string.Format("{0}", property2),
+                        string.Format("{0}", property3)});
+            table22.AddRow(new string[] {
+                        string.Format("{0}", property1_Value),
+                        string.Format("{0}", property2_Value),
+                        string.Format("{0}", property3_Value)});
+#line 169
+ testRunner.And("Add request payload as JSON object:", ((string)(null)), table22, "And ");
+#line 172
+ testRunner.When("Execute request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 173
+ testRunner.Then("Response code is \'400\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            TechTalk.SpecFlow.Table table23 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Message"});
+            table23.AddRow(new string[] {
+                        string.Format("{0}", message)});
+#line 174
+ testRunner.And("Response is:", ((string)(null)), table23, "And ");
+#line 178
+ testRunner.Then("\'GET\' request to \'/books\' endpoint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 179
+ testRunner.And("Execute request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 180
+ testRunner.Then("Response code is \'404\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            TechTalk.SpecFlow.Table table24 = new TechTalk.SpecFlow.Table(new string[] {
+                        ""});
+#line 181
+ testRunner.And("Response is collection of:", ((string)(null)), table24, "And ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Users cannot add book with invalid parameter values")]
+        [NUnit.Framework.CategoryAttribute("bug4")]
+        [NUnit.Framework.CategoryAttribute("bug6")]
+        [NUnit.Framework.CategoryAttribute("query6")]
+        [NUnit.Framework.TestCaseAttribute("one", "Test Title", "Test Description", "Test Author", "Book.Id should be a positive integer! Parameter name: book.Id", null)]
+        [NUnit.Framework.TestCaseAttribute("1", "{int}123", "Test Description", "Test Author", "TBC", null)]
+        [NUnit.Framework.TestCaseAttribute("1", "Test Title", "{int}123", "Test Author", "TBC", null)]
+        [NUnit.Framework.TestCaseAttribute("1", "Test Title", "Test Description", "{int}123", "TBC", null)]
+        [NUnit.Framework.TestCaseAttribute("1", "{int}123", "{int}456", "{int}789", "TBC", null)]
+        public virtual void UsersCannotAddBookWithInvalidParameterValues(string id, string title, string description, string author, string message, string[] exampleTags)
+        {
+            string[] @__tags = new string[] {
+                    "bug4",
+                    "bug6",
+                    "query6"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Users cannot add book with invalid parameter values", @__tags);
+#line 192
+this.ScenarioSetup(scenarioInfo);
+#line 193
+ testRunner.Given("\'POST\' request to \'/books\' endpoint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+            TechTalk.SpecFlow.Table table25 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Id",
+                        "Title",
+                        "Description",
+                        "Author"});
+            table25.AddRow(new string[] {
                         string.Format("{0}", id),
                         string.Format("{0}", title),
                         string.Format("{0}", description),
                         string.Format("{0}", author)});
-#line 108
- testRunner.And("Response is:", ((string)(null)), table12, "And ");
+#line 194
+ testRunner.And("Add request payload as JSON object:", ((string)(null)), table25, "And ");
+#line 197
+ testRunner.When("Execute request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 198
+ testRunner.Then("Response code is \'400\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            TechTalk.SpecFlow.Table table26 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Message"});
+            table26.AddRow(new string[] {
+                        string.Format("{0}", message)});
+#line 199
+ testRunner.And("Response is:", ((string)(null)), table26, "And ");
+#line 203
+ testRunner.Then("\'GET\' request to \'/books\' endpoint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 204
+ testRunner.And("Execute request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 205
+ testRunner.Then("Response code is \'404\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            TechTalk.SpecFlow.Table table27 = new TechTalk.SpecFlow.Table(new string[] {
+                        ""});
+#line 206
+ testRunner.And("Response is collection of:", ((string)(null)), table27, "And ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Users cannot add book identical with already existing in the library")]
+        [NUnit.Framework.IgnoreAttribute("Ignored scenario")]
+        [NUnit.Framework.CategoryAttribute("bug1")]
+        [NUnit.Framework.CategoryAttribute("unknown")]
+        [NUnit.Framework.CategoryAttribute("query4")]
+        public virtual void UsersCannotAddBookIdenticalWithAlreadyExistingInTheLibrary()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Users cannot add book identical with already existing in the library", new string[] {
+                        "ignore",
+                        "bug1",
+                        "unknown",
+                        "query4"});
+#line 221
+this.ScenarioSetup(scenarioInfo);
+#line hidden
+            TechTalk.SpecFlow.Table table28 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Id",
+                        "Title",
+                        "Description",
+                        "Author"});
+            table28.AddRow(new string[] {
+                        "2",
+                        "Test Title1",
+                        "Test Description1",
+                        "Test Author1"});
+#line 222
+ testRunner.Given("Following books in library:", ((string)(null)), table28, "Given ");
+#line 225
+ testRunner.When("\'POST\' request to \'/books\' endpoint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+            TechTalk.SpecFlow.Table table29 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Id",
+                        "Title",
+                        "Description",
+                        "Author"});
+            table29.AddRow(new string[] {
+                        "3",
+                        "Test Title1",
+                        "Test Description1",
+                        "Test Author1"});
+#line 226
+ testRunner.And("Add request payload as JSON object:", ((string)(null)), table29, "And ");
+#line 229
+ testRunner.And("Execute request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Users can add batch of new books to the library")]
+        [NUnit.Framework.IgnoreAttribute("Ignored scenario")]
+        [NUnit.Framework.CategoryAttribute("bug1")]
+        [NUnit.Framework.CategoryAttribute("unknown")]
+        [NUnit.Framework.CategoryAttribute("query5")]
+        public virtual void UsersCanAddBatchOfNewBooksToTheLibrary()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Users can add batch of new books to the library", new string[] {
+                        "ignore",
+                        "bug1",
+                        "unknown",
+                        "query5"});
+#line 242
+this.ScenarioSetup(scenarioInfo);
+#line 243
+ testRunner.Given("\'POST\' request to \'/books\' endpoint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+            TechTalk.SpecFlow.Table table30 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Id",
+                        "Title",
+                        "Description",
+                        "Author"});
+            table30.AddRow(new string[] {
+                        "1",
+                        "Test Title1",
+                        "Test Description1",
+                        "Test Author1"});
+#line 244
+ testRunner.And("Add request payload as JSON collection:", ((string)(null)), table30, "And ");
+#line 247
+ testRunner.And("Execute request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 248
+ testRunner.Then("Response code is \'200\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            TechTalk.SpecFlow.Table table31 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Id",
+                        "Title",
+                        "Description",
+                        "Author"});
+            table31.AddRow(new string[] {
+                        "1",
+                        "Test Title1",
+                        "Test Description1",
+                        "Test Author1"});
+#line 249
+ testRunner.And("Response is:", ((string)(null)), table31, "And ");
+#line 253
+ testRunner.Then("\'GET\' request to \'/books/1\' endpoint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 254
+ testRunner.And("Execute request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 255
+ testRunner.Then("Response code is \'200\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            TechTalk.SpecFlow.Table table32 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Id",
+                        "Title",
+                        "Description",
+                        "Author"});
+            table32.AddRow(new string[] {
+                        "1",
+                        "Test Title1",
+                        "Test Description1",
+                        "Test Author1"});
+#line 256
+ testRunner.And("Response is:", ((string)(null)), table32, "And ");
 #line hidden
             this.ScenarioCleanup();
         }

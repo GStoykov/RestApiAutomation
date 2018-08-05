@@ -84,6 +84,15 @@ namespace LibraryManagerAutomation
         }
 
 
+        [StepDefinition(@"Response messaage is not returned")]
+        public void ResponseIsNotReturned()
+        {
+            var responseMsg = Request.GetResponseMessage();
+            Assert.IsTrue(string.IsNullOrEmpty(responseMsg));
+        }
+
+
+
         [StepDefinition(@"Add request payload as JSON (object|collection):")]
         public void AddContentToBody(string payloadFormat, Table payload)
         {
@@ -101,7 +110,7 @@ namespace LibraryManagerAutomation
         [StepDefinition(@"Add request payload as plain JSON:")]
         public void AddContentToBodyAsPlainJSON(string plainJSON)
         {
-            Request.AddContent(plainJSON);
+            // To be implemented in future
         }
 
 

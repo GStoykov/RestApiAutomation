@@ -92,28 +92,28 @@ this.ScenarioSetup(scenarioInfo);
  testRunner.And("Execute request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 14
  testRunner.Then("Response code is \'204\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 16
- testRunner.Then("\'GET\' request to \'/books\' endpoint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 15
+ testRunner.And("Response messaage is not returned", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 17
- testRunner.And("Execute request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Then("\'GET\' request to \'/books\' endpoint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 18
+ testRunner.And("Execute request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 19
  testRunner.Then("Response code is \'200\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
                         ""});
-#line 19
+#line 20
  testRunner.And("Response is collection of:", ((string)(null)), table2, "And ");
 #line hidden
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("User are informed on attempt to delete non-existing book by \"Id\"")]
-        [NUnit.Framework.CategoryAttribute("noResponse")]
-        public virtual void UserAreInformedOnAttemptToDeleteNon_ExistingBookById()
+        [NUnit.Framework.DescriptionAttribute("Users are informed on attempt to delete non-existing book by \"Id\"")]
+        public virtual void UsersAreInformedOnAttemptToDeleteNon_ExistingBookById()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User are informed on attempt to delete non-existing book by \"Id\"", new string[] {
-                        "noResponse"});
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Users are informed on attempt to delete non-existing book by \"Id\"", ((string[])(null)));
 #line 24
 this.ScenarioSetup(scenarioInfo);
 #line 25
@@ -123,50 +123,25 @@ this.ScenarioSetup(scenarioInfo);
 #line 27
  testRunner.Then("Response code is \'404\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
+            TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Message"});
+            table3.AddRow(new string[] {
+                        "Book with id 1 not found!"});
+#line 28
+ testRunner.And("Response is:", ((string)(null)), table3, "And ");
+#line hidden
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Deleting books without specifying \"Id\"")]
-        [NUnit.Framework.CategoryAttribute("noResponse")]
         [NUnit.Framework.CategoryAttribute("bug1")]
         public virtual void DeletingBooksWithoutSpecifyingId()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Deleting books without specifying \"Id\"", new string[] {
-                        "noResponse",
                         "bug1"});
-#line 31
+#line 33
 this.ScenarioSetup(scenarioInfo);
-#line hidden
-            TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
-                        "Id",
-                        "Title",
-                        "Description",
-                        "Author"});
-            table3.AddRow(new string[] {
-                        "1",
-                        "Test Title",
-                        "Test Description",
-                        "Test Author"});
-            table3.AddRow(new string[] {
-                        "2",
-                        "Test 2",
-                        "Test 2",
-                        "Test 2"});
-#line 32
- testRunner.Given("Following books in library:", ((string)(null)), table3, "Given ");
-#line 37
- testRunner.Given("\'DELETE\' request to \'/books\' endpoint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 38
- testRunner.And("Execute request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 39
- testRunner.Then("Response code is \'405\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 41
- testRunner.Then("\'GET\' request to \'/books\' endpoint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 42
- testRunner.And("Execute request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 43
- testRunner.Then("Response code is \'200\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
                         "Id",
@@ -183,8 +158,47 @@ this.ScenarioSetup(scenarioInfo);
                         "Test 2",
                         "Test 2",
                         "Test 2"});
-#line 44
- testRunner.And("Response is collection of:", ((string)(null)), table4, "And ");
+#line 34
+ testRunner.Given("Following books in library:", ((string)(null)), table4, "Given ");
+#line 39
+ testRunner.Given("\'DELETE\' request to \'/books\' endpoint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 40
+ testRunner.And("Execute request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 41
+ testRunner.Then("Response code is \'405\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 42
+ testRunner.And("Response messaage is not returned", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Message"});
+            table5.AddRow(new string[] {
+                        "The requested resource does not support http method \'DELETE\'."});
+#line 43
+ testRunner.And("Response is:", ((string)(null)), table5, "And ");
+#line 47
+ testRunner.Then("\'GET\' request to \'/books\' endpoint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 48
+ testRunner.And("Execute request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 49
+ testRunner.Then("Response code is \'200\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            TechTalk.SpecFlow.Table table6 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Id",
+                        "Title",
+                        "Description",
+                        "Author"});
+            table6.AddRow(new string[] {
+                        "1",
+                        "Test Title",
+                        "Test Description",
+                        "Test Author"});
+            table6.AddRow(new string[] {
+                        "2",
+                        "Test 2",
+                        "Test 2",
+                        "Test 2"});
+#line 50
+ testRunner.And("Response is collection of:", ((string)(null)), table6, "And ");
 #line hidden
             this.ScenarioCleanup();
         }

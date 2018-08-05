@@ -17,14 +17,12 @@ namespace LibraryManagerAutomation
 
             foreach (var key in expected.Keys)
             {
-                //In the case the target dictionary contains numerical types we need to cast the
-                //input dictionary value to the specified type
 
                 Assert.IsTrue(actual.ContainsKey(key), $"Key not found: '{key}'");
 
                 double x = 0;
 
-                if (actual[key] == null)
+                if (actual[key] is null || expected[key] is null)
                 {
                     Assert.AreEqual(expected[key], actual[key], key);
                 }
@@ -38,7 +36,8 @@ namespace LibraryManagerAutomation
                 }
                 else if (actual[key] is string)
                 {
-                    Assert.AreEqual(expected[key].ToString(), actual[key].ToString());
+
+                    Assert.AreEqual(expected[key].ToString(), actual[key]);
                 }
                 else
                 {
@@ -48,10 +47,10 @@ namespace LibraryManagerAutomation
         }
 
         /// <summary>
-        /// Loop through all keys in the list of actual and compare them to the corresponding keys from the list of expected
+        /// Comparing two List of dictionaries
         /// </summary>
-        /// <param name="expected">compare from</param>
-        /// <param name="actual">compare to</param>
+        /// <param name="expected">expected dictionary</param>
+        /// <param name="actual">actual dictionary</param>
         public static void ListDictionaryEqual(List<Dictionary<string, object>> expected, List<Dictionary<string, object>> actual)
         {
             Assert.AreEqual(expected.Count, actual.Count, "Different amount of books was returrned", new object() { });
