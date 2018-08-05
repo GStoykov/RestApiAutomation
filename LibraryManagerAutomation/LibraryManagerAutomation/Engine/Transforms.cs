@@ -11,6 +11,11 @@ namespace LibraryManagerAutomation
     [Binding]
     public static class Transforms
     {
+        /// <summary>
+        /// Converts a Specflow Table of multiple rows to List<Dictionary<string, object>>
+        /// </summary>
+        /// <param name="table"></param>
+        /// <returns></returns>
         public static List<Dictionary<string, object>> ToListDictionary(this Table table)
         {
             var resultList = new List<Dictionary<string, object>>();
@@ -25,7 +30,11 @@ namespace LibraryManagerAutomation
             return resultList;
         }
 
-
+        /// <summary>
+        /// Converts a Specflow Table of one row to Dictionary<string, object>
+        /// </summary>
+        /// <param name="table"></param>
+        /// <returns></returns>
         public static Dictionary<string, object> ToDictionary(this Table table)
         {
             var dict = new Dictionary<string, object>();
@@ -43,6 +52,11 @@ namespace LibraryManagerAutomation
         }
 
 
+        /// <summary>
+        /// Replacing custom Speclflow variables to their real values, for example from $null to null
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
         public static object ParseValues(string input)
         {
             var matches = Regex.Matches(input, @"\$\w+");
@@ -71,7 +85,11 @@ namespace LibraryManagerAutomation
             return resultObj;
         }
 
-
+        /// <summary>
+        /// Converts string values to other types automatically
+        /// </summary>
+        /// <param name="contextValue"></param>
+        /// <returns></returns>
         public static object GetValueWithType(dynamic contextValue)
         {
             double x = 0;
@@ -96,6 +114,11 @@ namespace LibraryManagerAutomation
         }
 
 
+        /// <summary>
+        /// Converts string values to other types if they start with explicit notation, for example "{int}2" will be returned as Int32 number - 2
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
         public static object ForceConvertValue(string input)
         {
             var typeName = Regex.Match(input, @"(?<={)(.*)(?=})");

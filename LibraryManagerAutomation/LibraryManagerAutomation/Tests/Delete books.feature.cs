@@ -66,11 +66,9 @@ namespace LibraryManagerAutomation.Tests
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Users can delete a book by \"Id\"")]
-        [NUnit.Framework.CategoryAttribute("noResponse")]
         public virtual void UsersCanDeleteABookById()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Users can delete a book by \"Id\"", new string[] {
-                        "noResponse"});
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Users can delete a book by \"Id\"", ((string[])(null)));
 #line 7
 this.ScenarioSetup(scenarioInfo);
 #line hidden
@@ -166,20 +164,18 @@ this.ScenarioSetup(scenarioInfo);
  testRunner.And("Execute request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 41
  testRunner.Then("Response code is \'405\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 42
- testRunner.And("Response messaage is not returned", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[] {
                         "Message"});
             table5.AddRow(new string[] {
                         "The requested resource does not support http method \'DELETE\'."});
-#line 43
+#line 42
  testRunner.And("Response is:", ((string)(null)), table5, "And ");
-#line 47
+#line 46
  testRunner.Then("\'GET\' request to \'/books\' endpoint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 48
+#line 47
  testRunner.And("Execute request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 49
+#line 48
  testRunner.Then("Response code is \'200\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             TechTalk.SpecFlow.Table table6 = new TechTalk.SpecFlow.Table(new string[] {
@@ -197,7 +193,7 @@ this.ScenarioSetup(scenarioInfo);
                         "Test 2",
                         "Test 2",
                         "Test 2"});
-#line 50
+#line 49
  testRunner.And("Response is collection of:", ((string)(null)), table6, "And ");
 #line hidden
             this.ScenarioCleanup();

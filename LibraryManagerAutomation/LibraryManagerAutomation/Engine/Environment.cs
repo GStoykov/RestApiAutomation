@@ -15,9 +15,11 @@ namespace LibraryManagerAutomation
 
         public Environment()
         {
-            Request = new Request();
+        }
 
-
+        public static string GetConfigValue(string value)
+        {
+            return System.Configuration.ConfigurationManager.AppSettings[value];
         }
 
     }

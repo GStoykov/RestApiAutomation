@@ -9,7 +9,11 @@ namespace LibraryManagerAutomation
 {
     public static class AssertHelper
     {
-
+        /// <summary>
+        /// Comparing two dictionaries
+        /// </summary>
+        /// <param name="expected">Expected dictionary</param>
+        /// <param name="actual">Actual dictionary</param>
         public static void DictionaryEqual(Dictionary<string, object> expected, Dictionary<string, object> actual)
         {
             if (actual.Keys.Count == 0)
@@ -47,13 +51,13 @@ namespace LibraryManagerAutomation
         }
 
         /// <summary>
-        /// Comparing two List of dictionaries
+        /// Comparing two List<Dictionary<string, object>>
         /// </summary>
-        /// <param name="expected">expected dictionary</param>
-        /// <param name="actual">actual dictionary</param>
+        /// <param name="expected">Expected dictionary</param>
+        /// <param name="actual">Actual dictionary</param>
         public static void ListDictionaryEqual(List<Dictionary<string, object>> expected, List<Dictionary<string, object>> actual)
         {
-            Assert.AreEqual(expected.Count, actual.Count, "Different amount of books was returrned", new object() { });
+            Assert.AreEqual(expected.Count, actual.Count, "Different amount of dictionaries were returrned", new object() { });
 
             for (var i = 0; i < expected.Count; i++)
             {

@@ -3,7 +3,7 @@
 	As a API consumer
 	I want to be able to send information to endpoint which books to be removed
 
-@noResponse
+
 Scenario: Users can delete a book by "Id"
 	Given Following books in library:
         | Id | Title      | Description      | Author      |
@@ -39,7 +39,6 @@ Scenario: Deleting books without specifying "Id"
 	Given 'DELETE' request to '/books' endpoint
 	And Execute request
 	Then Response code is '405'
-	And Response messaage is not returned
 	And Response is:
 		| Message                                                       |
 		| The requested resource does not support http method 'DELETE'. |

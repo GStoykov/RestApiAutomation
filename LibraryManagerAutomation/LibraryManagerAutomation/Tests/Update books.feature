@@ -165,7 +165,7 @@ Scenario: Updating the details of non-existing book
 		||
 
 		
-@noResponse @bug1
+@bug1
 Scenario: Updating book details without specifying "Id"
 	Given Following books in library:
         | Id | Title      | Description      | Author      |
@@ -177,6 +177,9 @@ Scenario: Updating book details without specifying "Id"
 		| 1  | Changed Title | Changed Description | Changed Author |
 	And Execute request
 	Then Response code is '405'
+	And Response is:
+		| Message                                                    |
+		| The requested resource does not support http method 'PUT'. |
 
 	Then 'GET' request to '/books' endpoint
 	And Execute request

@@ -13,12 +13,11 @@ namespace LibraryManagerAutomation
         private RestRequest _request;
         private IRestResponse _response;
 
-        public Request()
+        public Request(string uri)
         {
             _client = new RestClient();
-            _client.BaseUrl = new Uri("http://localhost:9000/api");
+            _client.BaseUrl = new Uri(uri);
             _client.AddHandler("application/json", new JsonDeserializer());
-            //_client.AddHandler("text/json", new JsonDeserializer());
             _request = new RestRequest();
         }
 
